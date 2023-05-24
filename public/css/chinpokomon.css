@@ -1,0 +1,236 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Arizonia';
+    src: url('/fonts/Arizonia-Regular.ttf');
+}
+
+body {
+    z-index: -1;
+}
+
+.chinpokomonGrid {
+    display: grid;
+    justify-items: center;
+
+    width: 100%;
+
+    padding-left: 25vw;
+    padding-right: 25vw;
+}
+
+.chinpokomonGrid, .chinpokomonGrid > div {
+    margin-bottom: 3em;
+}
+
+.chinpokomonCard {
+    width: 100%;
+    height: 20vw;
+    display: grid; 
+    grid-template-columns: 1fr 1.4fr; 
+    grid-template-rows: 0.5fr 1.5fr; 
+    gap: 0px 0px;
+    background-color: rgb(213, 225, 231);
+    grid-template-areas: 
+        "imgGrid nameGrid"
+        "imgGrid abilityGrid";
+    box-shadow: 0.5vw 0.5vw 0.5vw rgb(145, 145, 145);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.createGrid > div {
+    background-color: rgb(213, 231, 213) !important;
+}
+
+.createGrid {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+}
+
+.imgGrid {
+    display: grid;
+    grid-area: imgGrid;
+    z-index: 10;
+    overflow: hidden;
+    margin: 10%;
+ }
+
+.imgGrid > div {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 10;
+}
+
+.imgGrid > div > p {
+    font-size: 1.5vw;
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+    z-index: -5;
+}
+
+.drop {
+    background-color: rgba(128, 128, 128, 0.616);
+    border: .2vw black dashed;
+}
+
+ .nameGrid { 
+    display: grid;
+    grid-area: nameGrid;
+ }
+
+ .nameGrid > h3 {
+    align-self: center;
+    margin-top: 0.4em;
+    margin-left: 0.2em;
+    font-size: 2.5vw;
+    cursor: pointer;
+ }
+
+ .nameGrid > input {
+    align-self: center;
+    margin-top: 0.4em;
+    margin-left: 0.2em;
+    font-size: 2.5vw;
+    width: 90%;
+ }
+
+ .abilityGrid {
+    grid-area: abilityGrid;
+    padding-left: 0.5em;
+    width: auto
+ }
+
+ .abilityGrid > h2 {
+    font-size: 1.5vw;
+    padding-top: 1vw;
+ }
+
+ .abilityGrid > ul { 
+    display: grid;
+    list-style: none;
+    width: 90%
+ }
+
+ .abilityGrid > ul > li {
+    font-size: 1.5vw;
+    margin-top: .5vw;
+ }
+
+ .authorName {
+    font-size: 2vw;
+    font-family: 'Arizonia', cursive;
+    display: grid;
+    position: absolute;
+    align-self: self-end;
+    justify-self: end;
+    padding-right: 2vw;
+    padding-bottom: .4vw;
+}
+
+.abilityInputs > li {
+    display: flex;
+    width: auto;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.abilityInputs > li > input {
+    width: 100%;
+    height: 1.5vw;
+    align-self: center;
+    font-size: 1vw;
+}
+
+.abilityInputs > li > p {
+    width: 10%;
+    height: fit-content;
+}
+
+#submitChinpokomon {
+    align-self: center;
+    justify-self: center;
+    font-size: 1vw;
+    border-radius: 0;
+    border-style: none;
+    background-color: rgb(226, 226, 226);;
+    width: 50%;
+    height: 3vw;
+    box-shadow: 0.3vw 0.3vw 0.3vw rgb(145, 145, 145);
+    margin: .2vw;
+}
+
+#feedBackText {
+    font-size: 1vw;
+    text-align: center;
+    margin: .2vw;
+
+}
+
+.hidden {
+    display: none; 
+}
+
+.hiddenI {
+    display: none !important; 
+}
+
+.updateDelAbsolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.updateDelGrid {
+    background-color: rgba(0, 0, 0, 0.438);
+    position: fixed;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    top: 0;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    padding-left: 25vw;
+    padding-right: 25vw;
+    z-index: 100;
+}
+
+#UDButtons {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-auto-flow: column;
+    gap: 1vw;
+}
+
+#UDButtons > button {
+    width: 100%;
+    font-size: 1vw;
+    border-radius: 0;
+    border-style: none;
+    height: 3vw;
+    box-shadow: 0.3vw 0.3vw 0.3vw rgb(145, 145, 145);
+    margin-top: 1vw;
+}
+
+.delCard {
+    background-color: rgb(231, 213, 213);
+}
+
+#deleteButton {
+    background-color: rgb(235, 141, 141);
+}
+
+#updateButton {
+    background-color: rgb(86, 221, 158);
+}

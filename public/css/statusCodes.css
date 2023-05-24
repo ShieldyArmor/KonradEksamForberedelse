@@ -1,0 +1,11 @@
+.userErr {
+    color: red;
+}
+
+.serverErr {
+    color: orange;
+}
+
+.ok {
+    color: #00af00;
+}

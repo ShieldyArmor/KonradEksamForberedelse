@@ -1,0 +1,29 @@
+<%- include('partials/header') %>
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/statusCodes.css">
+
+    <div class="main">
+        <form class="createUserForm">
+            <h2>Fyll inn email, brukernavn, og passord for å lage din bruker</h2>
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email"><br>
+
+            <label for="username">Brukernavn:</label>
+            <input type="text" name="username" id="username"><br>
+
+            <label for="password">Passord:</label>
+            <input type="password" name="password" id="password"><br><br>
+
+            <p class="statusText hidden"></p>
+            <button type="submit">Opprett bruker</button><br><br>
+
+            <a href="/sign-in">Har du allerede en bruker? Logg inn her.</a>
+        </form>
+    </div>
+
+    <!-- script -->
+    <script src="/js/user-create.js"></script>
+
+<%- include('partials/footer') %>

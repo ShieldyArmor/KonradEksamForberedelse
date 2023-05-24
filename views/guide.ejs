@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/guide.css">
+    <link rel="stylesheet" href="/css/statusCodes.css">
+
+    <div class="main">
+
+        <% if (locals.loggedIn === false) { %>
+        <div class="loginPopup userErr">
+            <h2>Oops! Du må logge inn før du kan følge disse guidene ordentlig. <a href="/sign-in">Logg inn her.</a></h2>
+        </div><br><br>
+        <% } %>
+
+        <h2>Opprett ny Chinpokomon:</h2>
+        <label for="img_1">Først må du åpne din egen hjemmeside. Det kan du gjøre ved å trykke på brukernavnet ditt øverst i høyre hjørne som vist på bildet under, eller ved å trykke <a href="/home" target="_blank">her.</a></label><br>
+        <img name="img_1" src="/img/Screenshot_108.png" alt=""><br><br>
+
+        <label for="img_2">Når du er på hjemmesiden din, trenger du bare å fylle ut navnet til Chinpokomonen, og de 3 egenskapene. Feltene må ha minst 2 tegn, og kan ikke ha mer enn 15 tegn.</label><br>
+        <img name="img_2" src="/img/Screenshot_106.png" alt=""><br><br>
+
+        <label for="img_3">For å laste opp et bilde, så kan du åpne filutforskeren din, og dra bildet du vil bruke over boksen det står "Drag and drop your image here!" på. Da vil bildet vises i boksen. Til slutt må du trykke på "Submit new Chinpokomon" for å lagre den i databasen.</label><br>
+        <img name="img_3" src="/img/Screenshot_107.png" alt=""><br><br><br><br>
+
+        <h2>Oppdater og slette Chinpokomon:</h2>
+        <label for="img_4">Først må du åpne din egen hjemmeside. Det kan du gjøre ved å trykke på brukernavnet ditt øverst i høyre hjørne som vist på bildet under, eller ved å trykke <a href="/home" target="_blank">her.</a></label><br>
+        <img name="img_4" src="/img/Screenshot_108.png" alt=""><br><br>
+
+        <label for="img_5">For å velge hvilken Chinpokomon du vil oppdatere eller slette, så kan du trykke på navnet til den du vil endre.</label><br>
+        <img name="img_5" src="/img/Screenshot_109.png" alt=""><br><br>
+
+        <label for="img_6">Nå vil det åpnes en popup med informasjonen fra Chinpokomonen du trykket på. Her kan du endre på alle feltene, og du kan til og med endre hvilket bilde den har, ved å dra å slippe et nytt bilde over det gamle. Når du er ferdig å redigere, så kan du trykke på den grønne knappen for å lagre, eller så kan du trykke på den røde knappen for å slette Chinpokomonen.</label><br>
+        <img name="img_6" src="/img/Screenshot_110.png" alt=""><br><br>
+    </div>
+
+<%- include('partials/footer') %>
