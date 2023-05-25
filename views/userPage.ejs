@@ -1,16 +1,24 @@
 <%- include('partials/header') %>
 
     <!-- css -->
-    <link rel="stylesheet" href="/css/chinpokomon.css">
+    <link rel="stylesheet" href="/css/wishlist.css">
 
+
+    <h2>Wishlist til <%= title %></h2>
     <div class="main">
-        <div class="chinpokomonDisplay chinpokomonGrid">
-            <h2>Chinpokos by <%= title %></h2>
+        <div class="wishlistDisplay wishlistGrid">
+
         </div>
+        
+        <div class="wishGrid">
+            <ol class="wishList">
+            </ol>
+        </div>
+
     </div>
 
     <!-- script -->
-    <script src="/js/getChinpokomon.js" defer></script>
+    <script src="/js/getWishlists.js" defer></script>
     <script src="/js/userPage.js" defer></script>
 
 <%- include('partials/footer') %>

@@ -2,55 +2,26 @@
 
     <!-- css -->
     <link rel="stylesheet" href="/css/statusCodes.css">
-    <link rel="stylesheet" href="/css/chinpokomon.css">
+    <link rel="stylesheet" href="/css/wishlist.css">
 
     <h2>Brukerside - <%= username %></h2>
 
-        <form class="updateDelGrid hiddenI">
-            <div class="delCard chinpokomonCard">
-                <div class="nameGrid"><input type="text" id="nameUD"></div>
-                <div class="imgGrid drop"><div id="imageUD"><p class="hidden">Drag and drop your image here!</p></div></div>
-                <div class="abilityGrid">
-                    <h2>Abilities:</h2>
-                    <ul class="abilityInputs">
-                        <li><p>1 - </p><input type="text" id="ability1UD"></li>
-                        <li><p>2 - </p><input type="text" id="ability2UD"></li>
-                        <li><p>3 - </p><input type="text" id="ability3UD"></li>
-                        <p id="feedBackText" class="hidden updateFeedback">test</p>
-                        <div id="UDButtons">
-                            <button id="updateButton">Update Chinpokomon</button>
-                            <button id="deleteButton">Delete Chinpokomon</button>
-                        </div>
-                    </ul>
-                </div>     
-            </div>
-        </form>
 
-    <div class="chinpokomonGrid">
-
+    <label for="wishItem" class="addLabel">add another item to the list</label>
         <form class="createGrid">
-        <div class="chinpokomonCard">
-            <div class="nameGrid"><input id="name" type="text"></div>
-            <div class="imgGrid drop"><div id="image"><p class="hideMe">Drag and drop your image here!</p></div></div>
-            <div class="abilityGrid">
-                <h2>Egenskaper:</h2>
-                <ul class="abilityInputs">
-                    <li><p>1 - </p><input id="ability1" type="text"></li>
-                    <li><p>2 - </p><input id="ability2" type="text"></li>
-                    <li><p>3 - </p><input id="ability3" type="text"></li>
-                    <p class="hidden createFeedback">test</p>
-                    <button type="submit" id="submitChinpokomon">Submit new Chinpokomon</button>
-                </ul>
-            </div>     
-        </div>
+        <input type="text" name="wishItem" id="wishItem" placeholder="add another item to the list...">
+        <button>Add</button>
         </form>
-    
+
+    <div class="wishGrid">
+        <ol class="wishList">
+        </ol>
     </div>
 
-    <div class="chinpokomonDisplay chinpokomonGrid"></div>
+    <div class="wishlistDisplay wishlistGrid"></div>
 
     <!-- scripts -->
-    <script src="/js/getChinpokomon.js" defer></script>
+    <script src="/js/getWishlists.js" defer></script>
     <script src="/js/userHome.js" defer></script>
 
 <%- include('partials/footer') %>

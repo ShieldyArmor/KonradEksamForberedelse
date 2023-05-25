@@ -1,2 +1,2 @@
-// hent 10 nyeste chinpokomons fra alle brukere
-getChinpokomons('0', 10);
+// hent 10 nyeste wishlists fra alle brukere
+getLandingWishlists();

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %> - Chinpokomon</title>
+    <title><%= title %> - wishlist</title>
 
     <link rel="stylesheet" href="/css/main.css">
 </head>
@@ -13,13 +13,12 @@
     <nav>
         <ul>
             <li class="leftNav"><p>Logo</p></li>
-            <li class="leftNav"><a href="/guide">Hjelp</a></li>
-            <li class="middleNav"><h1><a href="/">Chinpokomon</a></h1></li>
+            <li class="middleNav"><h1><a href="/">Wishlist</a></h1></li>
             <% if (locals.loggedIn === false) { %>
                 <li class="rightNav"><a href="/sign-in">Logg inn</a></li>
             <% } else if (locals.loggedIn === true) { %>
                 <li class="rightNav"><a href="/logout">Logg ut</a></li>
-                <li class="rightNav">Chinpokomon - <a href="/home"><%= locals.username %></a></li>
+                <li class="rightNav">Wishlist - <a href="/home"><%= locals.username %></a></li>
             <% } %>
         </ul>
     </nav><br><br><br>

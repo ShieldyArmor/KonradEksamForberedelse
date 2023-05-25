@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Arizonia';
+    src: url('/fonts/Arizonia-Regular.ttf');
+}
+
+body {
+    z-index: -1;
+}
+
+body > h2, body > label {
+    display: grid;
+    text-align: center;
+    margin: 6px;
+}
+
+#feedBackText {
+    font-size: 1vw;
+    text-align: center;
+    margin: .2vw;
+}
+
+.hidden {
+    display: none; 
+}
+
+.hiddenI {
+    display: none !important; 
+}
+
+.createGrid {
+    display: grid;
+    grid-auto-flow: column;
+
+    /* width: 100%; */
+
+    padding-left: 25vw;
+    padding-right: 25vw;
+}
+
+.createGrid > button{
+    border-radius: 0;
+    font-size: 3vw
+}
+
+#wishItem {
+    text-align: center;
+    font-size: 3vw;
+    height: 5vw;
+    /* width: 50vw; */
+}
+
+.wishGrid {
+        display: grid;
+        grid-auto-flow: column;
+
+        width: 100%;
+    
+        padding-left: 25vw;
+        padding-right: 25vw;
+
+        justify-content: center;
+}
+
+.wishGrid > ol {
+    display: grid;
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+    list-style-position: inside;
+    font-size: 2em;
+}
+
+.wishGrid > ol > li:nth-child(1) {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 0 16px 0 16px;
+    min-width: 60%;
+}
+.wishGrid > ol > li:nth-child(2) {
+    font-size: 1.5em;
+    padding: 0 8px 0 8px;
+    min-width: 45%;
+}
+
+.wishGrid > ol > li {
+    padding: .2em;
+    margin-top: 5px;
+    border: 2px solid black;
+    text-align: center;
+    min-width: 30%;
+    width: fit-content
+}

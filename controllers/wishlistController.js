@@ -1,26 +1,26 @@
 // imports
-const Chinpokomon = require('../models/chinpokomon');
+const Wishlist = require('../models/wishlist');
 
 // controller
-module.exports.chinpokomon_create = async (req, res) => {
-    const chinpokomon = req.body.chinpokomon;
+module.exports.wishlist_create = async (req, res) => {
+    const wishlist = req.body.wishlist;
 
-    const document = new Chinpokomon(chinpokomon);
+    const document = new Wishlist(wishlist);
 
     // sjekk om alle felter eksisterer
     if (document.name.length < 3) {
         res.status(400).send({
-            status: 'Navnet til Chinpokomonen må være minst 3 tegn',
+            status: 'Navnet til Wishlisten må være minst 3 tegn',
             code: 'userErr'
         });
     } else if (document.ability1.length < 2 || document.ability2.length < 2 || document.ability3.length < 2) {
         res.status(400).send({
-            status: 'Chinpokomonen må ha 3 egenskaper',
+            status: 'Wishlisten må ha 3 egenskaper',
             code: 'userErr'
         });
     } else if (!document.picture.includes('data:image/')) {
         res.status(400).send({
-            status: 'Du må laste opp et bilde til Chinpokomonen!',
+            status: 'Du må laste opp et bilde til Wishlisten!',
             code: 'userErr'
         });
     } else {
@@ -39,13 +39,13 @@ module.exports.chinpokomon_create = async (req, res) => {
             try {
                 document.save();
                 res.status(200).send({
-                    status: 'Chinpokomonen ble lagret',
+                    status: 'Wishlisten ble lagret',
                     code: 'ok'
                 });
             } catch(err) {
                 console.error(err);
                 res.status(400).send({
-                    status: 'Det skjedde en feil når Chinpokomonen skulle lagres. Prøv igjen senere',
+                    status: 'Det skjedde en feil når Wishlisten skulle lagres. Prøv igjen senere',
                     code: 'serverErr'
                 });
             };
@@ -53,25 +53,25 @@ module.exports.chinpokomon_create = async (req, res) => {
     };
 };
 
-module.exports.chinpokomon_read = async (req, res) => {
+module.exports.wishlist_read = async (req, res) => {
     let info = req.body;
 
-    let chinpokomons
+    let wishlists
 
     if (info.limit === 0) {
-        chinpokomons = await Chinpokomon.aggregate([
+        wishlists = await Wishlist.aggregate([
             {
                 '$sort': {
                     'createdAt': -1
                 }
             }, {
                 '$match': {
-                    'authorName': info.username
+                    'createdBy': info.username
                 }
             }
         ]);
     } else {
-        chinpokomons = await Chinpokomon.aggregate([
+        wishlists = await Wishlist.aggregate([
             {
                 '$sort': {
                     'createdAt': -1
@@ -83,62 +83,84 @@ module.exports.chinpokomon_read = async (req, res) => {
     };
 
     res.status(200).send({
-        chinpokomons: JSON.stringify(chinpokomons)
+        wishlists: JSON.stringify(wishlists)
     });
 };
 
-module.exports.chinpokomon_readOne = async (req, res) => {
+module.exports.wishlist_readAll = async (req, res) => {
     const id = req.body.id;
 
-    const chinpokomon = await Chinpokomon.findOne({ _id: id });
+    console.log("trying to read wishlist");
 
-    if (chinpokomon) {
+    const wishlists = await Wishlist.aggregate([
+        {
+            '$sort': {
+                'createdAt': -1
+            }
+        }
+    ]);
+
+    console.log(wishlists);
+
+    if (wishlists) {
         res.status(200).send({
-            chinpokomon,
+            wishlists,
             code: 'ok'
         });
     } else {
         res.status(400).send({
-            status: 'Kunne ikke finne chinpokomonen',
+            status: 'Kunne ikke finne wishlisten',
             code: 'serverErr'
         });
     };
 };
 
-module.exports.chinpokomon_updateOne = async (req, res) => {
-    const { id, chinpokomon } = req.body;
+module.exports.wishlist_updateOne = async (req, res) => {
+    const { username, newItem } = req.body;
 
-    console.log(id);
+    console.log(req.body);
+    console.log(username);
+    console.log(newItem);
 
     try {
-        const dbChinpokomon = await Chinpokomon.findOne({ _id: id });
-        await dbChinpokomon.updateOne(chinpokomon);
+        const dbWishlist = await Wishlist.findOne({ createdBy: username });
+        console.log(dbWishlist);
+        console.log(dbWishlist.items);
+
+
+        const newItemList = dbWishlist.items
+        
+        newItemList.push(newItem)
+        
+        console.log(newItemList);
+
+        await dbWishlist.updateOne({ items: newItemList });
         res.status(200).send({
-            status: 'Chinpokomonen er oppdatert!',
+            status: 'Wishlisten er oppdatert!',
             code: 'ok'
         });
     } catch(err) {
         console.error(err);
         res.status(400).send({
-            status: 'Chinpokomonen kunne desverre ikke oppdateres akkruat nå. Prøv igjen senere.',
+            status: 'Wishlisten kunne desverre ikke oppdateres akkruat nå. Prøv igjen senere.',
             code: 'serverErr'
         });
     };
 };
 
-module.exports.chinpokomon_deleteOne = async (req, res) => {
+module.exports.wishlist_deleteOne = async (req, res) => {
     const id = req.body.id;
 
     try {
-        await Chinpokomon.findOneAndDelete({ _id: id});
+        await Wishlist.findOneAndDelete({ _id: id});
         res.status(200).send({
-            status: 'Chinpokomonen er slettet!',
+            status: 'Wishlisten er slettet!',
             code: 'ok'
         });
     } catch(err) {
         console.error(err);
         res.status(400).send({
-            status: 'Chinpokomonen kunne desverre ikke slettes akkruat nå. Prøv igjen senere.',
+            status: 'Wishlisten kunne desverre ikke slettes akkruat nå. Prøv igjen senere.',
             code: 'serverErr'
         });
     };

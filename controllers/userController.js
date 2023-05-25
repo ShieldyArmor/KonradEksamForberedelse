@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
+const Wishlist = require('../models/wishlist');
 const { jwtSecret } = require('../config.json');
 
 // jwt
@@ -18,12 +19,7 @@ module.exports.user_create = async (req, res) => {
     let user = req.body.user;
 
     // sjekk at brukeren har fylt ut alle feltene
-    if (user.email.length < 3) {
-        res.status(400).send({
-            status: 'Emailen din må være minst 3 tegn',
-            code: 'userErr'
-        });
-    } else if (user.username.length < 3) {
+    if (user.username.length < 3) {
         res.status(400).send({
             status: 'Brukernavnet ditt må være minst 3 tegn',
             code: 'userErr'
@@ -35,16 +31,9 @@ module.exports.user_create = async (req, res) => {
         });
     } else {
         // sjekk om brukeren eksisterer
-        const emailExists = await User.findOne({ email: user.email });
         const usernameExists = await User.findOne({ username: user.username });
 
-        if (emailExists) {
-            console.log(emailExists._id.toString());
-            res.status(400).send({
-                status: `Emailen "${user.email}" er allerede i bruk!`,
-                code: 'userErr'
-            });
-        } else if (usernameExists) {
+        if (usernameExists) {
             console.log(usernameExists);
             res.status(400).send({
                 status: `Brukernavnet "${user.username}" er allerede i bruk!`,
@@ -67,6 +56,14 @@ module.exports.user_create = async (req, res) => {
                     httpOnly: true,
                     expiresIn: maxAge * 1000
                 });
+                
+                const wishlist = {
+                    items: [],
+                    createdBy: user.username,
+                    createdAt: Date.now()
+                };
+
+                const document2 = await Wishlist.create(wishlist);
 
                 res.status(200).send({
                     status: 'Brukeren din ble laget!',
@@ -88,7 +85,7 @@ module.exports.user_login = async (req, res) => {
     const user = req.body.user;
 
     // finn brukeren
-    const dbUser = await User.findOne({ email: user.email });
+    const dbUser = await User.findOne({ username: user.username });
 
     if (dbUser) {
         const auth = await bcrypt.compare(user.password, dbUser.password);

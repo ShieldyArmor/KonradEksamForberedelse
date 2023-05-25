@@ -1,0 +1,21 @@
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.wishGrid {
+    height: 100%;
+}
+
+.wishList {
+    height: 100%;
+    align-content: center;
+    justify-content: center;
+}
+
+.wishList > h {
+    height: fit-content;
+    font-size: 4vw;
+    margin: 1vw;
+    white-space: nowrap;
+}

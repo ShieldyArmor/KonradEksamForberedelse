@@ -41,9 +41,9 @@ createUserForm.addEventListener('submit', e => {
     e.preventDefault();
 
     const user = {
-        email: createUserForm.email.value,
         username: createUserForm.username.value,
-        password: createUserForm.password.value
+        password: createUserForm.password.value,
+        passwordConf: createUserForm.passwordConf.value
     };
 
     createUser(user);

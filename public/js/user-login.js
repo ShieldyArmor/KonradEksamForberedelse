@@ -41,7 +41,7 @@ loginForm.addEventListener('submit', e => {
     e.preventDefault();
 
     const user = {
-        email: loginForm.email.value,
+        username: loginForm.username.value,
         password: loginForm.password.value
     };
 
