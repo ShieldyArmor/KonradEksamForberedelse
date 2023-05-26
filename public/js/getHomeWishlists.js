@@ -2,7 +2,7 @@ const displayDiv = document.querySelector('.wishList');
 
 const getWishlists = async (username, limit) => {
 
-    console.log(username);
+    // console.log(username);
 
 
     const res = await fetch('/wishlist-read', {
@@ -23,8 +23,8 @@ const getWishlists = async (username, limit) => {
 
     const userWishlist = wishlists[0]
 
-    console.log(wishlists);
-    console.log(userWishlist);
+    // console.log(wishlists);
+    // console.log(userWishlist);
 
     let i = 0;
 
@@ -54,15 +54,15 @@ const getWishlists = async (username, limit) => {
     let DBUps = Array.from(document.querySelectorAll(".DBUp"))
     let DBDowns = Array.from(document.querySelectorAll(".DBDown"))
 
-    console.log(DBUps);
-    console.log(DBDowns);
+    // console.log(DBUps);
+    // console.log(DBDowns);
 
     DBUps.forEach(btn => {
         btn.addEventListener('click', e => {
             let liIndex = btn.parentElement.parentElement.parentElement.getAttribute("dbindex")
-            console.log(liIndex)
-            console.log(btn.parentElement.parentElement.children[0].textContent);
-            console.log("up!");
+            // console.log(liIndex)
+            // console.log(btn.parentElement.parentElement.children[0].textContent);
+            // console.log("up!");
             moveItem("-1", liIndex)
 
         })
@@ -71,8 +71,8 @@ const getWishlists = async (username, limit) => {
     DBDowns.forEach(btn => {
         btn.addEventListener('click', e => {
             let liIndex = btn.parentElement.parentElement.parentElement.getAttribute("dbindex")
-            console.log(liIndex)
-            console.log("down!");
+            // console.log(liIndex)
+            // console.log("down!");
             moveItem("1", liIndex)
         })
     })
