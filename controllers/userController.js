@@ -19,7 +19,12 @@ module.exports.user_create = async (req, res) => {
     let user = req.body.user;
 
     // sjekk at brukeren har fylt ut alle feltene
-    if (user.username.length < 3) {
+    if (user.password != user.passwordConf) {
+        res.status(400).send({
+            status: 'Du må bekrefte passordet!',
+            code: 'userErr'
+        });
+    } else if (user.username.length < 3) {
         res.status(400).send({
             status: 'Brukernavnet ditt må være minst 3 tegn',
             code: 'userErr'

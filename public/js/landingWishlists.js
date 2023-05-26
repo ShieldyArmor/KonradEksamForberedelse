@@ -14,7 +14,7 @@ const getLandingWishlists = async () => {
 
     const wishlists = result.wishlists
 
-    console.log(wishlists);
+    // console.log(wishlists);
 
     wishlists.forEach(e => {
 
@@ -24,25 +24,10 @@ const getLandingWishlists = async () => {
         `
 
         allWishDiv.innerHTML += template
-        console.log(e.items[0]);
+        // console.log(e.items[0]);
         
     }
 
     })
 
-
-    // const wishlists = JSON.parse(result.wishlists);
-
-    // const userWishlist = wishlists[0]
-
-    // console.log(wishlists);
-    // console.log(userWishlist);
-
-    // userWishlist.items.forEach(item => {
-    //     const template = `
-    //     <li>${item}</li>
-    //     `;
-
-    //     displayDiv.innerHTML += template;
-    // });
 };

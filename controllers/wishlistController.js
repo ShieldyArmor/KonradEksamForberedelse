@@ -88,8 +88,6 @@ module.exports.wishlist_read = async (req, res) => {
 };
 
 module.exports.wishlist_readAll = async (req, res) => {
-    const id = req.body.id;
-
     console.log("trying to read wishlist");
 
     const wishlists = await Wishlist.aggregate([
@@ -100,7 +98,7 @@ module.exports.wishlist_readAll = async (req, res) => {
         }
     ]);
 
-    console.log(wishlists);
+    // console.log(wishlists);
 
     if (wishlists) {
         res.status(200).send({
@@ -118,9 +116,9 @@ module.exports.wishlist_readAll = async (req, res) => {
 module.exports.wishlist_updateOne = async (req, res) => {
     const { username, newItem } = req.body;
 
-    console.log(req.body);
-    console.log(username);
-    console.log(newItem);
+    // console.log(req.body);
+    // console.log(username);
+    // console.log(newItem);
 
     try {
         const dbWishlist = await Wishlist.findOne({ createdBy: username });
