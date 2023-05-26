@@ -163,3 +163,64 @@ module.exports.wishlist_deleteOne = async (req, res) => {
         });
     };
 };
+
+module.exports.wishlist_move = async (req, res) => {
+    const { direction, index, username } = req.body;
+
+    function moveItem(array, from, to) {
+        // remove `from` item and store it
+        var f = array.splice(from, 1)[0];
+        // insert stored item into position `to`
+        array.splice(to, 0, f);
+      }
+
+    console.log(direction);
+    console.log(index);
+    console.log(username);
+
+    let newIndex = Number(index)+Number(direction);
+
+    if (newIndex < 0) {
+        res.status(400).send({
+            status: 'Cannot move first array item further up.',
+            code: 'serverErr'
+        });
+    }
+
+    else {
+
+    console.log(`new Index: ${newIndex}`);
+
+    try { 
+        const dbWishlist = await Wishlist.findOne({ createdBy: username });
+        const dbItems = dbWishlist.items
+
+        if (dbItems.length <= newIndex) {
+            res.status(400).send({
+                status: 'Cannot move last array item further down.',
+                code: 'serverErr'
+            });
+        }
+        else {
+        moveItem(dbItems, index, newIndex)
+
+        console.log(dbItems);
+
+        await dbWishlist.updateOne({ items: dbItems });
+
+        res.status(200).send({
+            status: 'Wishlisten er oppdatert!',
+            code: 'ok'
+        });
+        }
+    } catch(err) {
+        console.error(err);
+        res.status(400).send({
+            status: 'Error.',
+            code: 'serverErr'
+        });
+    };
+
+}
+
+};

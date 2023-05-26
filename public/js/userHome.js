@@ -147,7 +147,9 @@ form.addEventListener('submit', e => {
     const newitem = form.wishItem.value
 
     updateWishlist(username, newitem);
+    displayDiv.innerHTML = ""
 });
+
 
 getWishlists(username, 0);
 
@@ -220,7 +222,7 @@ const updateWishlist = async (username, newItem) => {
     
     console.log(result);
 
-    // Wishlistback(result.status, result.code, updateFeedback);
+    getWishlists(username, 0);
 };
 
 // slett wishlist
