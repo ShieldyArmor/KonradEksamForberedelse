@@ -7,35 +7,7 @@ module.exports.wishlist_create = async (req, res) => {
 
     const document = new Wishlist(wishlist);
 
-    // sjekk om alle felter eksisterer
-    if (document.name.length < 3) {
-        res.status(400).send({
-            status: 'Navnet til Wishlisten må være minst 3 tegn',
-            code: 'userErr'
-        });
-    } else if (document.ability1.length < 2 || document.ability2.length < 2 || document.ability3.length < 2) {
-        res.status(400).send({
-            status: 'Wishlisten må ha 3 egenskaper',
-            code: 'userErr'
-        });
-    } else if (!document.picture.includes('data:image/')) {
-        res.status(400).send({
-            status: 'Du må laste opp et bilde til Wishlisten!',
-            code: 'userErr'
-        });
-    } else {
-        // sjekk om feltene er for lange
-        if (document.name.length > 15) {
-            res.status(400).send({
-                status: 'Navnet kan ikke være lenger enn 15 tegn',
-                code: 'userErr'
-            });
-        } else if (document.ability1.length > 15 || document.ability2.length > 15 || document.ability3.length > 15) {
-            res.status(400).send({
-                status: 'Egenskapene kan ikke være lenger enn 15 tegn',
-                code: 'userErr'
-            });
-        } else {
+
             try {
                 document.save();
                 res.status(200).send({
@@ -49,9 +21,7 @@ module.exports.wishlist_create = async (req, res) => {
                     code: 'serverErr'
                 });
             };
-        };
     };
-};
 
 module.exports.wishlist_read = async (req, res) => {
     let info = req.body;
@@ -141,24 +111,6 @@ module.exports.wishlist_updateOne = async (req, res) => {
         console.error(err);
         res.status(400).send({
             status: 'Wishlisten kunne desverre ikke oppdateres akkruat nå. Prøv igjen senere.',
-            code: 'serverErr'
-        });
-    };
-};
-
-module.exports.wishlist_deleteOne = async (req, res) => {
-    const id = req.body.id;
-
-    try {
-        await Wishlist.findOneAndDelete({ _id: id});
-        res.status(200).send({
-            status: 'Wishlisten er slettet!',
-            code: 'ok'
-        });
-    } catch(err) {
-        console.error(err);
-        res.status(400).send({
-            status: 'Wishlisten kunne desverre ikke slettes akkruat nå. Prøv igjen senere.',
             code: 'serverErr'
         });
     };
